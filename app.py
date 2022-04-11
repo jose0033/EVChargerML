@@ -10,7 +10,7 @@ def index():
         y = request.form.get("y")
         congestion = request.form.get("congestion")
         satisfaction = 1#request.form.get("satisfaction")
-        accident = 1 #request.form.get("accident")
+        accident = 0 #request.form.get("accident")
 
         print(x,y,congestion,satisfaction,accident)
         model1 = joblib.load("CART")

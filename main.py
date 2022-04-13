@@ -6,8 +6,8 @@ import joblib
 #feed the Decision tree with relevant datasets to trigger the correct response
 df = pd.read_csv(r"trafficdata.csv")
 #variables involved
-x = df.loc[:, ["x", "y", "Congestion","Satisfaction","Accident"]]
-#experimental result outcome
+x = df.loc[:, ["Holiday", "Weather", "Volume","Speed","Accident"]]
+#result outcome
 y = df.loc[:, ["default"]]
 
 #Model One: Decision Tree
@@ -38,3 +38,20 @@ print(cm)
 joblib.dump(model,"GB")
 
 #Insert optimisation line if needed
+#from sklearn.model_selection import train_test_split
+
+#X_train, X_test, Y_train, Y_test = train_test_split(x,y, random_state=204)
+
+#model = tree.DecisionTreeClassifier(random_state=204)
+#model.fit(X_train, Y_train)
+#pred = model.predict(X_train)
+#cm = confusion_matrix(Y_train, pred)
+#print(cm)
+#accuracy = (cm[0,0] + cm[1,1]/(sum(sum(cm))))
+#print(accuracy)
+
+pred = model.predict(X_test)
+cm = confusion_matrix(Y_test, pred)
+print(cm)
+accuracy = (cm[0,0] + cm[1,1])/(sum(sum(cm)))
+print(accuracy)

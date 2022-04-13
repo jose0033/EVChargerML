@@ -1,0 +1,26 @@
+<html>
+    <body>
+        <h1> EV Charging Traffic Status Predictor </h1>
+        <form action = "/" method="post">
+            <p> Please input if the day experiencing a holiday or festive season (1 is Yes , 0 is No) ? </p>
+            </p><input type = "number" name="Holiday"></p>
+            <p> Please input a weather score of (1-100) where 1 is a heavy downpour and 100 is extremely sunny  </p>
+            <p><input type = "number" name="Weather"</p>
+            <p> Please input the relative traffic volume of (1-100) where 1 is non-peak hour and 100 is peak hour period (i.e Mon-Sun 9-1030am , 6-730pm)  </p>
+            <p><input type = "number" name="Volume"</p>
+            <p> Please input the relative traffic speed of (1-5) where 1 is an extremely slow moving traffic and 5 is a extremely smooth traffic.
+            <p><input type = "number" name="Speed"</p>
+            <p> Please input a accident score of (0-5) where 0 is no accident and 5 is major accident/road block  </p>
+            <p><input type = "number" name="Accident"</p>
+
+            </p>
+
+            <p><input type = "submit" value = "submit"</p>
+        </form>
+        <p> The following output is the Charging Congestion Index where 0 means "Unhealthy Levels/Congested", 100 means "Healthy Levels/Uncongested" condition for EV Charging</p>
+        <p>CART Model Predictor : {{result1}}</p>
+        <p>Random Forest Predictor : {{result2}}</p>
+        <p>XGBoost Predictor: {{result3}}</p>
+
+    </body>
+</html>

@@ -1,27 +1,47 @@
 <html>
     <body>
-        <h1> EV Charging Traffic Status Predictor </h1>
-        <iframe src="https://giphy.com/embed/vgzC87hEb13xbBeffO" width="480" height="360" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/car-future-electric-vgzC87hEb13xbBeffO">via GIPHY</a></p>
+        <h1> EV Charging Queue API  </h1>
+        <iframe src="https://giphy.com/embed/vgzC87hEb13xbBeffO" width="480" height="360" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/car-future-electric-vgzC87hEb13xbBeffO"></a></p>
         <form action = "/" method="post">
-            <p> Please input if the day experiencing a holiday or festive season (1 is Yes , 0 is No). </p>
-            </p><input type = "number" name="Holiday"></p>
-            <p> Please input a weather score of (1-100) where 1 is a heavy downpour and 100 is extremely sunny. </p>
-            <p><input type = "number" name="Weather"</p>
-            <p> Please input the relative traffic volume of (1-100) where 1 is non-peak hour and 100 is peak hour period (i.e Mon-Sun 9-1030am , 6-730pm).  </p>
-            <p><input type = "number" name="Volume"</p>
-            <p> Please input the relative traffic speed of (1-5) where 1 is an extremely slow moving traffic and 5 is a extremely smooth traffic.
-            <p><input type = "number" name="Speed"</p>
-            <p> Please input a accident score of (0-5) where 0 is no accident and 5 is major accident/road block.  </p>
-            <p><input type = "number" name="Accident"</p>
 
-            </p>
+            <p> Step 1. Collects X coordinate of EV Charger </p>
+            <p> <input type = "number" name="x"/></p>
+            <p> Step 2. Collects Y coordinate of EV Charger </p>
+            <p><input type = "number" name="y"/></p>
 
-            <p><input type = "submit" value = "submit"</p>
+            <p> Step 3. Collects data if current date is a holiday/festive season (1 is Yes , 0 is No) </p>
+            <p><input type = "number" name="Holiday"></p>
+            <p> Step 4. Collects weather score (1-100) where 1 is a heavy downpour and 100 is extremely sunny  </p>
+            <p><input type = "number" name="Weather"></p>
+            <p> Step 5. Collects traffic volume data (1-100) where 1 is non-peak hour and 100 is peak hour period (i.e Mon-Sun 9-1030am , 6-730pm)  </p>
+            <p><input type = "number" name="Volume"></p>
+            <p> Step 6. Collects traffic speed (1-5) where 1 is an extremely slow moving traffic and 5 is a extremely smooth traffic.
+            <p><input type = "number" name="Speed"></p>
+            <p> Step 7, Collects an accident score of (0-5) where 0 is no accident and 5 is major accident/road block  </p>
+            <p><input type = "number" name="Accident"></p>
+            <p><input type = "submit" value = "submit"/></p>
         </form>
-        <p> The following output is the Charging Congestion Index (CCI) where 0 means "Unhealthy Levels/Congested", 100 means "Healthy Levels/Uncongested" condition for EV Charging. </p>
-        <p>CART Model Predictor : {{result1}}</p>
-        <p>Random Forest Predictor : {{result2}}</p>
-        <p>XGBoost Predictor: {{result3}}</p>
+        <p> Charging Congestion Index (XGBoost Model): {{result3}} </p>
+        {% if high == True %}
+        <p style="color: red;"> High Traffic Charging Queue  </p>
+        {% endif %}
+<!--     (0-35 Score)-->
+        {% if med == True %}
+        <p style="color: orange;"> Moderate Traffic Charging Queue </p>
+        {% endif %}
+<!--&lt;!&ndash;        (36-70 Score)&ndash;&gt;36 >= result3 < 71-->
+        {% if low == True %}
+        <p style="color: green;"> Low Traffic Charging Queue </p>
+
+        {% endif %}
+<!--        (71-100 Score)-->
+
+        <br>
+        <p>Additional Model Details: </p>
+        <p>CART Model Predictor: {{result1}}</p>
+        <p>Random Forest Predictor: {{result2}}</p>
+<!--        <p>XGBoost Predictor: {{result3}}</p>-->
+
 
     </body>
 </html>

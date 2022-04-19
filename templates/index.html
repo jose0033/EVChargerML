@@ -3,11 +3,14 @@
         <h1> EV Charging Queue API  </h1>
         <iframe src="https://giphy.com/embed/vgzC87hEb13xbBeffO" width="480" height="360" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/car-future-electric-vgzC87hEb13xbBeffO"></a></p>
         <form action = "/" method="post">
-
+            
             <p> Step 1. Collects X coordinate of EV Charger </p>
             <p> <input type = "number" name="x"/></p>
             <p> Step 2. Collects Y coordinate of EV Charger </p>
             <p><input type = "number" name="y"/></p>
+            <p> Step 3. Collects desired timing of departure i.e 2359 </p>
+            <p><input type = "number" name="y"/></p>
+            
 
             <p> Step 3. Collects data if current date is a holiday/festive season (1 is Yes , 0 is No) </p>
             <p><input type = "number" name="Holiday"></p>
@@ -23,15 +26,15 @@
         </form>
         <p> Charging Congestion Index (XGBoost Model): {{result3}} </p>
         {% if high == True %}
-        <p style="color: red;"> High Traffic Charging Queue  </p>
+        <p style="color: red;"> High Traffic Charging Queue (8$ Surcharge) </p>
         {% endif %}
 <!--     (0-35 Score)-->
         {% if med == True %}
-        <p style="color: orange;"> Moderate Traffic Charging Queue </p>
+        <p style="color: orange;"> Moderate Traffic Charging Queue (3$ Surcharge) </p>
         {% endif %}
 <!--&lt;!&ndash;        (36-70 Score)&ndash;&gt;36 >= result3 < 71-->
         {% if low == True %}
-        <p style="color: green;"> Low Traffic Charging Queue </p>
+        <p style="color: green;"> Low Traffic Charging Queue (No surcharge) </p>
 
         {% endif %}
 <!--        (71-100 Score)-->
